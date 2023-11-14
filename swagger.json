@@ -1,0 +1,117 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0", 
+        "title": "Taylor Swift's Albums Project CRUD",
+        "description": "My User Project Application API",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:4000",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Taylor Swift Albums",
+            "description": "API for users in the system"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+
+    "paths": {
+        "/tsalbums": {
+            "get": {
+                "tags": ["TS Albums"],
+                "summary": "Get all albums in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Album"
+                        }
+                    }
+                }
+            }
+        },
+        "/album": {
+            "post": {
+                "tags": ["TS Albums"],
+                "description": "Create new album in system",
+                "parameters": [
+                    {
+                        "name": "album",
+                        "in": "body",
+                        "description": "Album that we want to create",
+                        "schema": {
+                            "$ref": "#/definitions/Album"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "New album is created",
+                        "schema": {
+                            "$ref": "#/definitions/Album"
+                        }
+                    }
+                }
+            }
+        },
+        "/album/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of album that we want to delete",
+                    "type": "integer"
+                }
+            ],
+            "delete": {
+                "tags": ["TS Albums"],
+                "summary": "Delete Album",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Album"
+                        }
+                    }
+                }
+            }
+        }
+    },    
+    "definitions": {
+        "Album": {
+            "required": ["id","name","released"],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "uniqueItems": true
+                },
+                "name": {
+                    "type": "string"
+                },
+                "released": {
+                    "type": "integer"
+                }
+            }
+        }
+    }
+}
+
+
+
+
